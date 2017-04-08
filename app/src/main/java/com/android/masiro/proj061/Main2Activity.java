@@ -2,23 +2,24 @@ package com.android.masiro.proj061;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.icu.text.DateFormat;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Main2Activity extends AppCompatActivity {
     EditText e,e2,e3,e4,e5,e6;
     int category = 0;
-    String currentDate = "2017.04.06"; //나중에 바꾸기
+    long now = System.currentTimeMillis();
+    Date date = new Date(now);
+    SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    String currentDate = CurDateFormat.format(date); //나중에 바꾸기
     final int CHICKEN = 1;
     final int PIZZA = 2;
     final int HAMBURGER = 3;
@@ -36,7 +37,7 @@ public class Main2Activity extends AppCompatActivity {
             r4 = (RadioButton)dlgview.findViewById(R.id.radioButton4);
             r5 = (RadioButton)dlgview.findViewById(R.id.radioButton5);
 
-            dlg.setTitle("먹고싶은 메뉴는")
+            dlg.setTitle("맛집 종류")
                     .setView(dlgview)
                     .setPositiveButton("닫기",null)
                     .setNegativeButton("확인", new DialogInterface.OnClickListener() {
