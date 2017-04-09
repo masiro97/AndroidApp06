@@ -2,6 +2,7 @@ package com.android.masiro.proj061;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, final View view, int position, long id) {
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                 final int pos = position;
@@ -61,12 +62,15 @@ public class MainActivity extends AppCompatActivity {
                                 t.setText("맛집리스트 (" + number_of_list + "개)");
                                 list_data.remove(pos);
                                 adapter.notifyDataSetChanged();
-                            }
-                        })
-                        .show();
 
-                return true;
-            }
+                                Snackbar.make(view, "삭제되었습니다", Snackbar.LENGTH_SHORT)
+                                        .setAction("OK", null).show();
+                                    }
+                                })
+                                .show();
+
+                        return true;
+                    }
         });
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
